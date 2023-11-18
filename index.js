@@ -7,7 +7,8 @@ const Apache = '[![License](https://img.shields.io/badge/License-Apache%202.0-bl
 const GNU = '[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
 const MIT = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
 
-const questions = [
+inquirer
+    .prompt = ([
     {
       type: 'input',
       name: 'title',
@@ -54,13 +55,21 @@ const questions = [
       name: 'email',
       message: 'Please enter your email address',
     }, 
-];
+]);
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+//function writeToFile(fileName, data) {}
+
+.then((data) => {
+    const filename = `README-${data.title.toLowerCase().split(' ').join('')}.md`;
+
+    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+      err ? console.log(err) : console.log('You have created a new README file!')
+    );
+  });
 
 // TODO: Create a function to initialize app
-function init() {}
+//function init() {}
 
 // Function call to initialize app
-init();
+//init();
