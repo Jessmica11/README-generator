@@ -1,14 +1,51 @@
 // TODO: Include packages needed for this application
-const fs = require('fs');
 const inquirer = require('inquirer');
+const fs = require('fs');
+
+const generateREADME = ({title, description, installation, usage, 
+    guidelines, instructions, license, github, email }) =>
+  `# ${title}
+  ${license}
+  
+  ## Project Description
+  ${description}
+  
+  ## Table of Contents
+  [Installation](#installation)
+  [Usage Information](#usage-information)
+  [Contribution Guidelines](#contribution-guidelines)
+  [Test Instructions](#test-instructions)
+  [License](#license)
+  [Questions](#questions)
+  
+  ## Installation
+  ${installation}
+
+  ## Usage Information
+  ${usage}
+
+  ## Contribution Guidelines
+  ${guidelines}
+
+  ## Test Instructions
+  ${instructions}
+  
+  ## License
+  ${license}
+
+  ## Questions
+  [Email Your Questions Here](mailto:${email}?subject=Email from "README Generator")
+  [GitHub Profile](https://github.com/${github})
+
+  ---`;
 
 // TODO: Create an array of questions for user input
-const Apache = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
+const Apache = '[![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
 const GNU = '[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
 const MIT = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
 
 inquirer
-    .prompt = ([
+    .prompt([
     {
       type: 'input',
       name: 'title',
@@ -58,18 +95,16 @@ inquirer
 ]);
 
 // TODO: Create a function to write README file
-//function writeToFile(fileName, data) {}
+.then((answers) => {
+    const readmePageContent = generateREADME(answers);
 
-.then((data) => {
-    const filename = `README-${data.title.toLowerCase().split(' ').join('')}.md`;
-
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+    fs.writeFile('README.md', readmePageContent, (err) =>
       err ? console.log(err) : console.log('You have created a new README file!')
     );
-  });
+});
 
 // TODO: Create a function to initialize app
-//function init() {}
+
 
 // Function call to initialize app
-//init();
+init();
