@@ -108,7 +108,7 @@ ${licenseText}
 
 // TODO: Create a function to write README file
 fs.writeFileSync(createdREADME, readmeContent);
-  console.log('You successfully created a README.md file!');
+  console.log('You successfully created a new README file!');
 }
 
 // TODO: Create a function to initialize app
