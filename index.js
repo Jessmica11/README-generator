@@ -67,6 +67,8 @@ async function generateREADME() {
 const licenseBadge = licenseBadges[answers.license];
 const licenseText = licenseTCs[answers.license]
 
+const createdREADME = `GENERATED_README_${Date.now()}.md`;
+
 const readmeContent = `# ${answers.title}
 ${licenseBadge}
 
@@ -105,7 +107,7 @@ ${licenseText}
 `;
 
 // TODO: Create a function to write README file
-fs.writeFileSync('README.md', readmeContent);
+fs.writeFileSync(createdREADME, readmeContent);
   console.log('You successfully created a README.md file!');
 }
 
