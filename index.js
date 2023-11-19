@@ -1,110 +1,101 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
 const fs = require('fs');
-
-const generateREADME = ({title, description, installation, usage, 
-    guidelines, instructions, license, github, email }) =>
-  `# ${title}
-  ${license}
-  
-  ## Project Description
-  ${description}
-  
-  ## Table of Contents
-  [Installation](#installation)
-  [Usage Information](#usage-information)
-  [Contribution Guidelines](#contribution-guidelines)
-  [Test Instructions](#test-instructions)
-  [License](#license)
-  [Questions](#questions)
-  
-  ## Installation
-  ${installation}
-
-  ## Usage Information
-  ${usage}
-
-  ## Contribution Guidelines
-  ${guidelines}
-
-  ## Test Instructions
-  ${instructions}
-  
-  ## License
-  ${license}
-
-  ## Questions
-  [Email Your Questions Here](mailto:${email}?subject=Email from "README Generator")
-  [GitHub Profile](https://github.com/${github})
-
-  ---`;
-
+const inquirer = require('inquirer');
 // TODO: Create an array of questions for user input
-const Apache = '[![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
-const GNU = '[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
-const MIT = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
-
-inquirer
-    .prompt([
+async function generateREADME() {
+  const answers = await inquirer.prompt([
     {
       type: 'input',
       name: 'title',
-      message: 'Please enter a project title',
+      message: 'Enter project title:'
     },
     {
       type: 'input',
       name: 'description',
-      message: 'Please write a project description',
+      message: 'Enter project description:'
     },
     {
       type: 'input',
       name: 'installation',
-      message: 'Please enter installation information',
+      message: 'Enter installation instructions:'
     },
     {
       type: 'input',
       name: 'usage',
-      message: 'Please enter your project usage information',
+      message: 'Enter usage information:'
     },
     {
       type: 'input',
       name: 'guidelines',
-      message: 'Please enter your contribution guidelines',
+      message: 'Enter contribution guidelines:'
     },
     {
       type: 'input',
       name: 'instructions',
-      message: 'Please enter your project test instructions',
+      message: 'Enter test instructions:'
     },
     {
-      type: 'checkbox',
+      type: 'list',
       name: 'license',
-      message: 'Please choose a markdown license',
-      choices: [Apache, GNU, MIT],
+      message: 'Choose a license:',
+      choices: ['MIT', 'Apache 2.0', 'GPLv3']
     },
     {
       type: 'input',
       name: 'github',
-      message: 'Please enter your GitHub username',
+      message: 'Enter your GitHub username:'
     },
     {
       type: 'input',
       name: 'email',
-      message: 'Please enter your email address',
-    }, 
-]);
+      message: 'Enter your email address:'
+    }
+  ]);
+
+const licenseBadge = `![License](https://img.shields.io/badge/license-${encodeURIComponent(answers.license)}-blue.svg)`;
+
+const readmeContent = `# ${answers.title}
+${licenseBadge}
+
+## Project Description
+${answers.description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage Information](#usage-information)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Test Instructions](#test-instructions)
+- [License](#license)
+- [Questions](#questions)
+
+## Installation
+${answers.installation}
+
+## Usage Information
+${answers.usage}
+
+## Contribution Guidelines
+${answers.guidelines}
+
+## Test Instructions
+${answers.instructions}
+
+## License
+${answers.license}
+
+## Questions
+[Email Your Questions Here](mailto:${answers.email}?subject=?)
+
+[GitHub Profile](https://github.com/${answers.github})
+
+---`;
 
 // TODO: Create a function to write README file
-.then((answers) => {
-    const readmePageContent = generateREADME(answers);
-
-    fs.writeFile('README.md', readmePageContent, (err) =>
-      err ? console.log(err) : console.log('You have created a new README file!')
-    );
-});
+fs.writeFileSync('README.md', readmeContent);
+  console.log('You successfully created a README.md file!');
+}
 
 // TODO: Create a function to initialize app
 
-
 // Function call to initialize app
-init();
+generateREADME();
