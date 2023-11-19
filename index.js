@@ -53,9 +53,9 @@ async function generateREADME() {
   ]);
 
   const licenseBadges = {
-    MIT: '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)',
-    Apache: '![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)',
-    GPLv3: '![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)'
+    MIT: '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)',
+    Apache: '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)',
+    GPLv3: '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)'
   };
 
   const licenseBadge = licenseBadges[answers.license] || '';
