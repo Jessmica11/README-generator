@@ -38,7 +38,7 @@ async function generateREADME() {
       type: 'list',
       name: 'license',
       message: 'Choose a license:',
-      choices: ['MIT', 'Apache 2.0', 'GPLv3']
+      choices: ['MIT', 'Apache', 'GPLv3']
     },
     {
       type: 'input',
@@ -53,12 +53,19 @@ async function generateREADME() {
   ]);
 
   const licenseBadges = {
-    MIT: '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)',
+    MIT: '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)',
     Apache: '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)',
-    GPLv3: '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)'
+    GPLv3: '![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)'
   };
 
-  const licenseBadge = licenseBadges[answers.license] || '';
+  const licenseTCs = {
+    MIT: '[License MIT: Terms & Conditions](https://choosealicense.com/licenses/mit/)',
+    Apache: '[License Apache 2.0: Terms & Conditions](https://choosealicense.com/licenses/apache-2.0/)',
+    GPLv3: '[License GPL 3.0: Terms & Conditions](https://choosealicense.com/licenses/gpl-3.0/)'
+  };
+
+const licenseBadge = licenseBadges[answers.license];
+const licenseText = licenseTCs[answers.license]
 
 const readmeContent = `# ${answers.title}
 ${licenseBadge}
@@ -87,14 +94,15 @@ ${answers.guidelines}
 ${answers.instructions}
 
 ## License
-${answers.license}
+${licenseText}
 
 ## Questions
 [Email Your Questions Here](mailto:${answers.email}?subject=?)
 
 [GitHub Profile](https://github.com/${answers.github})
 
----`;
+---
+`;
 
 // TODO: Create a function to write README file
 fs.writeFileSync('README.md', readmeContent);
