@@ -2,7 +2,7 @@
 
 ## Project Items
 
-[Walkthrough Video]()
+[Walkthrough Video](https://drive.google.com/file/d/1R8ex1y7KIDOsP8_Yb7WnUc1lhoCCvJ08/view?usp=sharing)
 
 [GitHub Repository Link](https://github.com/Jessmica11/README-generator)
 
