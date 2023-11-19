@@ -4,7 +4,7 @@
 
 [Walkthrough Video]()
 
-[GitHub Repository Link]()
+[GitHub Repository Link](https://github.com/Jessmica11/README-generator)
 
 ## Item Resources
 
