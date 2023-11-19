@@ -10,11 +10,11 @@
 
 [Common README Licenses](https://gist.github.com/kofiav/c1059e1075b67582e86b07aa9759e20d)
 
-[Apache License](https://choosealicense.com/licenses/apache-2.0/)
+[Apache License Information & Badge](https://choosealicense.com/licenses/apache-2.0/)
 
-[GNU License](https://choosealicense.com/licenses/gpl-3.0/)
+[GNU License Information & Badge](https://choosealicense.com/licenses/gpl-3.0/)
 
-[MIT License](https://choosealicense.com/licenses/mit/)
+[MIT License Information & Badge](https://choosealicense.com/licenses/mit/)
 
 ## User Story
 
